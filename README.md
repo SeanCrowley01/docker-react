@@ -1,3 +1,15 @@
+NOTES
+when we ran this first with 'npm run start' - that worked because when we created the application with 'create-react-app frontend'
+it downloaded the dependenices locally and so running the app directly off our machine with npm worked because it had these
+
+however there is no point having these locally as then there are 2 copies - one on the container - so we deleted the local copies
+
+when we now try and run the app - it works with docker becuase docker installs the dependencies
+
+removing the files will cause issues when you are using volumes
+`docker run -p 8080:3000 -v /app/node_modules -v $(pwd):/app a8524ac19cf7`
+the above says - map port 8080 on my machine to 3000 in the container. Then use the node_modules app that is within the docker container (which gets installed from 'npm install' in the dockerfile). For everything else use pwd as a reference
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

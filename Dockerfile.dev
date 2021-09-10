@@ -1,0 +1,14 @@
+FROM node:alpine
+
+WORKDIR '/app'
+# everything after this should be executed within the /app dir on the image
+
+COPY package.json .
+#  copy this file into workdir of /app
+
+RUN npm install
+
+COPY . .
+# copy everything else is our pwd into the workdir
+
+CMD ["npm","run","start"]
